@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ImoDa" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ImoDaContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="ImoDa.Cliente" />
+    <EntitySet Name="Arrendamentos" EntityType="ImoDa.Arrendamento" />
+    <EntitySet Name="Vendas" EntityType="ImoDa.Venda" />
+    <EntitySet Name="Casas" EntityType="ImoDa.Casa" />
+    <EntitySet Name="Limpezas" EntityType="ImoDa.Limpeza" />
+    <EntitySet Name="Servicos" EntityType="ImoDa.Servico" />
+    <AssociationSet Name="ClienteArrendamento" Association="ImoDa.ClienteArrendamento">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Arrendamento" EntitySet="Arrendamentos" />
+    </AssociationSet>
+    <AssociationSet Name="ArrendamentoCasaArrendavel" Association="ImoDa.ArrendamentoCasaArrendavel">
+      <End Role="Arrendamento" EntitySet="Arrendamentos" />
+      <End Role="CasaArrendavel" EntitySet="Casas" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteCasa" Association="ImoDa.ClienteCasa">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Casa" EntitySet="Casas" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteVenda" Association="ImoDa.ClienteVenda">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Venda" EntitySet="Vendas" />
+    </AssociationSet>
+    <AssociationSet Name="CasaVendavelVenda" Association="ImoDa.CasaVendavelVenda">
+      <End Role="Venda" EntitySet="Vendas" />
+      <End Role="CasaVendavel" EntitySet="Casas" />
+    </AssociationSet>
+    <AssociationSet Name="LimpezaCasa" Association="ImoDa.LimpezaCasa">
+      <End Role="Limpeza" EntitySet="Limpezas" />
+      <End Role="Casa" EntitySet="Casas" />
+    </AssociationSet>
+    <AssociationSet Name="ServicoLimpeza" Association="ImoDa.ServicoLimpeza">
+      <End Role="Servico" EntitySet="Servicos" />
+      <End Role="Limpeza" EntitySet="Limpezas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+    <Property Name="Nif" Type="Int32" Nullable="false" />
+    <Property Name="Morada" Type="String" Nullable="false" />
+    <Property Name="Contacto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Arrendamentos" Relationship="ImoDa.ClienteArrendamento" FromRole="Cliente" ToRole="Arrendamento" />
+    <NavigationProperty Name="Casas" Relationship="ImoDa.ClienteCasa" FromRole="Cliente" ToRole="Casa" />
+    <NavigationProperty Name="Aquisicoes" Relationship="ImoDa.ClienteVenda" FromRole="Cliente" ToRole="Venda" />
+  </EntityType>
+  <EntityType Name="Arrendamento">
+    <Key>
+      <PropertyRef Name="IdArrendamento" />
+    </Key>
+    <Property Name="IdArrendamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InicioContrato" Type="DateTime" Nullable="false" />
+    <Property Name="DuracaoMeses" Type="Int32" Nullable="false" />
+    <Property Name="Renovavel" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Arrendatario" Relationship="ImoDa.ClienteArrendamento" FromRole="Arrendamento" ToRole="Cliente" />
+    <NavigationProperty Name="CasaArrendavel" Relationship="ImoDa.ArrendamentoCasaArrendavel" FromRole="Arrendamento" ToRole="CasaArrendavel" />
+  </EntityType>
+  <EntityType Name="Venda">
+    <Key>
+      <PropertyRef Name="IdVenda" />
+    </Key>
+    <Property Name="IdVenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataVenda" Type="DateTime" Nullable="false" />
+    <Property Name="ValorNegociado" Type="Int32" Nullable="false" />
+    <Property Name="ComisaoNegocio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Comprador" Relationship="ImoDa.ClienteVenda" FromRole="Venda" ToRole="Cliente" />
+    <NavigationProperty Name="CasaVendavel" Relationship="ImoDa.CasaVendavelVenda" FromRole="Venda" ToRole="CasaVendavel" />
+  </EntityType>
+  <EntityType Name="Casa">
+    <Key>
+      <PropertyRef Name="IdCasa" />
+    </Key>
+    <Property Name="IdCasa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Localidade" Type="String" Nullable="false" />
+    <Property Name="Rua" Type="String" Nullable="false" />
+    <Property Name="Numero" Type="Int32" Nullable="false" />
+    <Property Name="Andar" Type="Int32" Nullable="false" />
+    <Property Name="Area" Type="Int32" Nullable="false" />
+    <Property Name="NumeroAssoalhadas" Type="Int32" Nullable="false" />
+    <Property Name="NumeroWC" Type="Int32" Nullable="false" />
+    <Property Name="NumeroPisos" Type="Int32" Nullable="false" />
+    <Property Name="Tipo" Type="String" Nullable="false" />
+    <NavigationProperty Name="Proprietario" Relationship="ImoDa.ClienteCasa" FromRole="Casa" ToRole="Cliente" />
+    <NavigationProperty Name="Limpezas" Relationship="ImoDa.LimpezaCasa" FromRole="Casa" ToRole="Limpeza" />
+  </EntityType>
+  <EntityType Name="CasaArrendavel" BaseType="ImoDa.Casa">
+    <Property Name="ValorBaseMes" Type="Int32" Nullable="false" />
+    <Property Name="Comisao" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Arrendamentos" Relationship="ImoDa.ArrendamentoCasaArrendavel" FromRole="CasaArrendavel" ToRole="Arrendamento" />
+  </EntityType>
+  <EntityType Name="CasaVendavel" BaseType="ImoDa.Casa">
+    <Property Name="ValorBaseVenda" Type="Int32" Nullable="false" />
+    <Property Name="ValorComissao" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Venda" Relationship="ImoDa.CasaVendavelVenda" FromRole="CasaVendavel" ToRole="Venda" />
+  </EntityType>
+  <EntityType Name="Limpeza">
+    <Key>
+      <PropertyRef Name="IdLimpeza" />
+    </Key>
+    <Property Name="IdLimpeza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Casa" Relationship="ImoDa.LimpezaCasa" FromRole="Limpeza" ToRole="Casa" />
+    <NavigationProperty Name="Servicos" Relationship="ImoDa.ServicoLimpeza" FromRole="Limpeza" ToRole="Servico" />
+  </EntityType>
+  <EntityType Name="Servico">
+    <Key>
+      <PropertyRef Name="IdServico" />
+    </Key>
+    <Property Name="IdServico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descrição" Type="String" Nullable="false" />
+    <Property Name="Valor" Type="Int32" Nullable="false" />
+    <Property Name="Unidades" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Limpeza" Relationship="ImoDa.ServicoLimpeza" FromRole="Servico" ToRole="Limpeza" />
+  </EntityType>
+  <Association Name="ClienteArrendamento">
+    <End Type="ImoDa.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="ImoDa.Arrendamento" Role="Arrendamento" Multiplicity="*" />
+  </Association>
+  <Association Name="ArrendamentoCasaArrendavel">
+    <End Type="ImoDa.Arrendamento" Role="Arrendamento" Multiplicity="*" />
+    <End Type="ImoDa.CasaArrendavel" Role="CasaArrendavel" Multiplicity="0..1" />
+  </Association>
+  <Association Name="ClienteCasa">
+    <End Type="ImoDa.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="ImoDa.Casa" Role="Casa" Multiplicity="*" />
+  </Association>
+  <Association Name="ClienteVenda">
+    <End Type="ImoDa.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="ImoDa.Venda" Role="Venda" Multiplicity="*" />
+  </Association>
+  <Association Name="CasaVendavelVenda">
+    <End Type="ImoDa.Venda" Role="Venda" Multiplicity="0..1" />
+    <End Type="ImoDa.CasaVendavel" Role="CasaVendavel" Multiplicity="1" />
+  </Association>
+  <Association Name="LimpezaCasa">
+    <End Type="ImoDa.Limpeza" Role="Limpeza" Multiplicity="*" />
+    <End Type="ImoDa.Casa" Role="Casa" Multiplicity="0..1" />
+  </Association>
+  <Association Name="ServicoLimpeza">
+    <End Type="ImoDa.Servico" Role="Servico" Multiplicity="*" />
+    <End Type="ImoDa.Limpeza" Role="Limpeza" Multiplicity="0..1" />
+  </Association>
+</Schema>

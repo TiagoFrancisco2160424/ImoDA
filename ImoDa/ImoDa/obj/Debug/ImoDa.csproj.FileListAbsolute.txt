@@ -1,0 +1,15 @@
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\bin\Debug\ImoDa.exe.config
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\bin\Debug\ImoDa.exe
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\bin\Debug\ImoDa.pdb
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.csprojResolveAssemblyReference.cache
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.Properties.Resources.resources
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.csproj.GenerateResource.Cache
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.csproj.CoreCompileInputs.cache
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.exe
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.pdb
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.ImoDaPrincipal.resources
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.Arrendamentos.resources
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.Casas.resources
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.Clientes.resources
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.Limpezas.resources
+C:\Users\M0hamede\source\repos\ImoDa\ImoDa\obj\Debug\ImoDa.Venda.resources

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="326c5e3f31f2475ca3c2d3464e7a76d9" Name="Diagram1" >
+        <EntityTypeShape EntityType="ImoDa.Cliente" Width="1.5" PointX="1" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoDa.Arrendamento" Width="1.5" PointX="4.75" PointY="0.5" />
+        <EntityTypeShape EntityType="ImoDa.Venda" Width="1.5" PointX="4.5" PointY="5.75" />
+        <EntityTypeShape EntityType="ImoDa.Casa" Width="1.5" PointX="7.375" PointY="2.625" />
+        <EntityTypeShape EntityType="ImoDa.CasaArrendavel" Width="1.5" PointX="8" PointY="0.5" />
+        <InheritanceConnector EntityType="ImoDa.CasaArrendavel" />
+        <EntityTypeShape EntityType="ImoDa.CasaVendavel" Width="1.5" PointX="8" PointY="6.875" />
+        <InheritanceConnector EntityType="ImoDa.CasaVendavel" />
+        <EntityTypeShape EntityType="ImoDa.Limpeza" Width="1.5" PointX="5" PointY="3.875" />
+        <EntityTypeShape EntityType="ImoDa.Servico" Width="1.5" PointX="2.875" PointY="3.75" />
+        <AssociationConnector Association="ImoDa.ClienteArrendamento" />
+        <AssociationConnector Association="ImoDa.ArrendamentoCasaArrendavel" />
+        <AssociationConnector Association="ImoDa.ClienteCasa" />
+        <AssociationConnector Association="ImoDa.ClienteVenda" />
+        <AssociationConnector Association="ImoDa.CasaVendavelVenda" />
+        <AssociationConnector Association="ImoDa.LimpezaCasa" />
+        <AssociationConnector Association="ImoDa.ServicoLimpeza" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
